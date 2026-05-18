@@ -796,8 +796,7 @@ if __name__ == "__main__":
     errors = np.linalg.norm(image_points - projected, axis=1)
     mean_error = np.mean(errors)
     max_error = np.max(errors)
-    error1 = np.sum((projected - image_points) ** 2)
-    error1 = math.sqrt(error1) / image_points.shape[0]
+    error1 = math.sqrt(np.sum((projected - image_points) ** 2) / len(image_points))
 
     print(f"\nReprojection errors:")
     print(f"   Mean error (px): {mean_error:.3f}")
@@ -851,8 +850,7 @@ if __name__ == "__main__":
     errors_refined = np.linalg.norm(filtered_image_points - projected_refined, axis=1)
     mean_error_refined = np.mean(errors_refined)
     max_error_refined = np.max(errors_refined)
-    error1_refined = np.sum((projected_refined - filtered_image_points) ** 2)
-    error1_refined = math.sqrt(error1_refined) / filtered_image_points.shape[0]
+    error1_refined = math.sqrt(np.sum((projected_refined - filtered_image_points) ** 2) / len(filtered_image_points))
     
     print(f"\n" + "=" * 80)
     print(f"[OK] Result after removing worst point")
